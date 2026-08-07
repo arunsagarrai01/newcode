@@ -432,3 +432,56 @@ StreamBuilder
 Animations
 *
 * */
+
+/*
+* Since you're learning Flutter from the basics, here's a structured set of practice questions. Try to solve them without looking at the answers. They progress from easy to more challenging.
+
+🟢 Level 1: Basic Widgets
+1. Hello World
+
+Create a Flutter app that displays:
+
+Hello Flutter
+
+in the center of the screen.
+
+2. Change Text Style
+
+Display the text:
+
+Welcome Arun
+
+with:
+
+Font size: 30
+Bold
+Blue color
+Letter spacing: 3
+3. Container Practice
+
+Create a container with:
+
+Width: 200
+Height: 150
+Red background
+Rounded corners (20)
+Centered text: "Flutter"
+4. SizedBox
+
+Create two buttons with 30 pixels of space between them.
+
+5. Padding
+
+Add 20 pixels of padding around a text widget.
+
+🟡 Level 2: Row & Column
+6. Row
+
+Display three icons in a row:
+
+Home
+Favorite
+Settings
+*
+*
+* */

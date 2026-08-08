@@ -758,6 +758,8 @@ class _RegisterPageState extends State<RegisterPage> {
 }
 */
 
+/*
+
 
 
 
@@ -981,6 +983,136 @@ style: TextStyle(
 fontSize: 20,
 fontWeight: FontWeight.bold,
 ),
+),
+),
+),
+],
+),
+),
+);
+}
+}
+*/
+
+
+
+import 'package:flutter/material.dart';
+
+void main() {
+runApp(const MyApplication());
+}
+
+class MyApplication extends StatelessWidget {
+const MyApplication({super.key});
+
+@override
+Widget build(BuildContext context) {
+return MaterialApp(
+debugShowCheckedModeBanner: false,
+home: const ProfilePage(),
+);
+}
+}
+
+class ProfilePage extends StatelessWidget {
+const ProfilePage({super.key});
+
+@override
+Widget build(BuildContext context) {
+return Scaffold(
+appBar: AppBar(
+title: const Text("Profile"),
+centerTitle: true,
+),
+
+body: Padding(
+padding: const EdgeInsets.all(20),
+
+child: Column(
+children: [
+
+const SizedBox(height: 30),
+
+// Profile Image
+const CircleAvatar(
+radius: 60,
+child: Icon(
+Icons.person,
+size: 70,
+),
+),
+
+const SizedBox(height: 20),
+
+// Name
+const Text(
+"Arun Sagar Rai",
+style: TextStyle(
+fontSize: 25,
+fontWeight: FontWeight.bold,
+),
+),
+
+const SizedBox(height: 5),
+
+// Email
+const Text(
+"arun@example.com",
+style: TextStyle(
+fontSize: 16,
+color: Colors.grey,
+),
+),
+
+const SizedBox(height: 30),
+
+// Profile Information
+Card(
+child: Column(
+children: [
+
+ListTile(
+leading: const Icon(Icons.person),
+title: const Text("Name"),
+subtitle: const Text("Arun Sagar Rai"),
+),
+
+ListTile(
+leading: const Icon(Icons.email),
+title: const Text("Email"),
+subtitle: const Text("arun@example.com"),
+),
+
+ListTile(
+leading: const Icon(Icons.phone),
+title: const Text("Phone"),
+subtitle: const Text("9800000000"),
+),
+
+ListTile(
+leading: const Icon(Icons.location_on),
+title: const Text("Address"),
+subtitle: const Text("Kathmandu, Nepal"),
+),
+],
+),
+),
+
+const SizedBox(height: 25),
+
+// Edit Profile Button
+SizedBox(
+width: double.infinity,
+height: 50,
+
+child: ElevatedButton(
+onPressed: () {
+print("Edit Profile clicked");
+},
+
+child: const Text(
+"Edit Profile",
+style: TextStyle(fontSize: 18),
 ),
 ),
 ),

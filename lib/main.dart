@@ -594,6 +594,9 @@ class LoginPage extends StatelessWidget {
 
 */
 
+
+/*
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -753,4 +756,239 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 }
+*/
+
+
+
+
+import 'package:flutter/material.dart';
+
+void main() {
+runApp(const MyApplication());
+}
+
+class MyApplication extends StatelessWidget {
+const MyApplication({super.key});
+
+@override
+Widget build(BuildContext context) {
+return MaterialApp(
+debugShowCheckedModeBanner: false,
+home: const DashboardPage(),
+);
+}
+}
+
+class DashboardPage extends StatelessWidget {
+const DashboardPage({super.key});
+
+@override
+Widget build(BuildContext context) {
+return Scaffold(
+appBar: AppBar(
+title: const Text("Dashboard"),
+centerTitle: true,
+),
+
+// Drawer Menu
+drawer: Drawer(
+child: ListView(
+children: [
+
+const DrawerHeader(
+decoration: BoxDecoration(
+color: Colors.blue,
+),
+child: Column(
+crossAxisAlignment: CrossAxisAlignment.start,
+children: [
+Icon(
+Icons.account_circle,
+size: 60,
+color: Colors.white,
+),
+
+SizedBox(height: 10),
+
+Text(
+"Welcome Arun",
+style: TextStyle(
+color: Colors.white,
+fontSize: 20,
+),
+),
+],
+),
+),
+
+ListTile(
+leading: const Icon(Icons.dashboard),
+title: const Text("Dashboard"),
+onTap: () {
+Navigator.pop(context);
+},
+),
+
+ListTile(
+leading: const Icon(Icons.person),
+title: const Text("Profile"),
+onTap: () {
+print("Profile clicked");
+},
+),
+
+ListTile(
+leading: const Icon(Icons.settings),
+title: const Text("Settings"),
+onTap: () {
+print("Settings clicked");
+},
+),
+
+ListTile(
+leading: const Icon(Icons.logout),
+title: const Text("Logout"),
+onTap: () {
+print("Logout clicked");
+},
+),
+],
+),
+),
+
+// Dashboard Body
+body: Padding(
+padding: const EdgeInsets.all(20),
+
+child: Column(
+crossAxisAlignment: CrossAxisAlignment.start,
+
+children: [
+
+const Text(
+"Welcome Back!",
+style: TextStyle(
+fontSize: 28,
+fontWeight: FontWeight.bold,
+),
+),
+
+const SizedBox(height: 10),
+
+const Text(
+"Here is your dashboard",
+style: TextStyle(
+fontSize: 16,
+color: Colors.grey,
+),
+),
+
+const SizedBox(height: 25),
+
+// Dashboard Cards
+Row(
+children: [
+
+Expanded(
+child: Card(
+child: Padding(
+padding: const EdgeInsets.all(20),
+
+child: Column(
+children: [
+const Icon(
+Icons.people,
+size: 40,
+color: Colors.blue,
+),
+
+const SizedBox(height: 10),
+
+const Text(
+"Users",
+style: TextStyle(fontSize: 18),
+),
+
+const SizedBox(height: 5),
+
+const Text(
+"120",
+style: TextStyle(
+fontSize: 25,
+fontWeight: FontWeight.bold,
+),
+),
+],
+),
+),
+),
+),
+
+Expanded(
+child: Card(
+child: Padding(
+padding: const EdgeInsets.all(20),
+
+child: Column(
+children: [
+const Icon(
+Icons.shopping_cart,
+size: 40,
+color: Colors.green,
+),
+
+const SizedBox(height: 10),
+
+const Text(
+"Orders",
+style: TextStyle(fontSize: 18),
+),
+
+const SizedBox(height: 5),
+
+const Text(
+"50",
+style: TextStyle(
+fontSize: 25,
+fontWeight: FontWeight.bold,
+),
+),
+],
+),
+),
+),
+),
+],
+),
+
+const SizedBox(height: 20),
+
+// Another Card
+Card(
+child: ListTile(
+leading: const Icon(
+Icons.attach_money,
+size: 40,
+),
+
+title: const Text("Total Revenue"),
+
+subtitle: const Text("This month's revenue"),
+
+trailing: const Text(
+"\$5,000",
+style: TextStyle(
+fontSize: 20,
+fontWeight: FontWeight.bold,
+),
+),
+),
+),
+],
+),
+),
+);
+}
+}
+
 

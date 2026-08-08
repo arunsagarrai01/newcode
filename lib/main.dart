@@ -488,6 +488,8 @@ Settings
 
 */
 
+/*
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -589,3 +591,166 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
+
+*/
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: const RegisterPage(),
+    );
+  }
+}
+
+class RegisterPage extends StatefulWidget {
+  const RegisterPage({super.key});
+
+  @override
+  State<RegisterPage> createState() => _RegisterPageState();
+}
+
+class _RegisterPageState extends State<RegisterPage> {
+  final _formKey = GlobalKey<FormState>();
+
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Register"),
+      ),
+
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+
+        child: Form(
+          key: _formKey,
+
+          child: Column(
+            children: [
+
+              const Text(
+                "Create Account",
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              const SizedBox(height: 30),
+
+              // Name
+              TextFormField(
+                controller: nameController,
+                decoration: const InputDecoration(
+                  labelText: "Name",
+                  prefixIcon: Icon(Icons.person),
+                  border: OutlineInputBorder(),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Please enter your name";
+                  }
+                  return null;
+                },
+              ),
+
+              const SizedBox(height: 15),
+
+              // Email
+              TextFormField(
+                controller: emailController,
+                keyboardType: TextInputType.emailAddress,
+                decoration: const InputDecoration(
+                  labelText: "Email",
+                  prefixIcon: Icon(Icons.email),
+                  border: OutlineInputBorder(),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Please enter your email";
+                  }
+
+                  if (!value.contains("@")) {
+                    return "Enter a valid email";
+                  }
+
+                  return null;
+                },
+              ),
+
+              const SizedBox(height: 15),
+
+              // Password
+              TextFormField(
+                controller: passwordController,
+                obscureText: true,
+                decoration: const InputDecoration(
+                  labelText: "Password",
+                  prefixIcon: Icon(Icons.lock),
+                  border: OutlineInputBorder(),
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return "Please enter your password";
+                  }
+
+                  if (value.length < 6) {
+                    return "Password must be at least 6 characters";
+                  }
+
+                  return null;
+                },
+              ),
+
+              const SizedBox(height: 25),
+
+              // Register button
+              SizedBox(
+                width: double.infinity,
+                height: 50,
+
+                child: ElevatedButton(
+                  onPressed: () {
+
+                    if (_formKey.currentState!.validate()) {
+
+                      print("Name: ${nameController.text}");
+                      print("Email: ${emailController.text}");
+                      print("Password: ${passwordController.text}");
+
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text("Registration Successful!"),
+                        ),
+                      );
+                    }
+                  },
+
+                  child: const Text(
+                    "Register",
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+

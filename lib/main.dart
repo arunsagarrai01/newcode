@@ -55,6 +55,7 @@ class HomeScreen extends StatelessWidget {
 
 */
 
+/*
 
 import 'package:flutter/material.dart';
 
@@ -260,6 +261,166 @@ child: const Text("Logout"),
 }
 }
 
+*/
+
+
+import 'package:flutter/material.dart';
+
+void main() {
+runApp(const MyApplication());
+}
+
+class MyApplication extends StatelessWidget {
+const MyApplication({super.key});
+
+@override
+Widget build(BuildContext context) {
+return MaterialApp(
+debugShowCheckedModeBanner: false,
+home: const HomePage(),
+);
+}
+}
+
+class HomePage extends StatefulWidget {
+const HomePage({super.key});
+
+@override
+State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+
+int selectedIndex = 0;
+
+final List<Widget> pages = [
+const HomeScreen(),
+const SearchScreen(),
+const NotificationScreen(),
+const ProfileScreen(),
+];
+
+@override
+Widget build(BuildContext context) {
+return Scaffold(
+
+appBar: AppBar(
+title: const Text("My App"),
+centerTitle: true,
+),
+
+// Display selected page
+body: pages[selectedIndex],
+
+// Bottom Navigation
+bottomNavigationBar: BottomNavigationBar(
+
+currentIndex: selectedIndex,
+
+onTap: (index) {
+setState(() {
+selectedIndex = index;
+});
+},
+
+items: const [
+
+BottomNavigationBarItem(
+icon: Icon(Icons.home),
+label: "Home",
+),
+
+BottomNavigationBarItem(
+icon: Icon(Icons.search),
+label: "Search",
+),
+
+BottomNavigationBarItem(
+icon: Icon(Icons.notifications),
+label: "Notifications",
+),
+
+BottomNavigationBarItem(
+icon: Icon(Icons.person),
+label: "Profile",
+),
+],
+),
+);
+}
+}
+
+// Home Screen
+class HomeScreen extends StatelessWidget {
+const HomeScreen({super.key});
+
+@override
+Widget build(BuildContext context) {
+return const Center(
+child: Text(
+"Home Page",
+style: TextStyle(
+fontSize: 30,
+fontWeight: FontWeight.bold,
+),
+),
+);
+}
+}
+
+// Search Screen
+class SearchScreen extends StatelessWidget {
+const SearchScreen({super.key});
+
+@override
+Widget build(BuildContext context) {
+return const Center(
+child: Text(
+"Search Page",
+style: TextStyle(
+fontSize: 30,
+fontWeight: FontWeight.bold,
+),
+),
+);
+}
+}
+
+// Notification Screen
+class NotificationScreen extends StatelessWidget {
+const NotificationScreen({super.key});
+
+@override
+Widget build(BuildContext context) {
+return const Center(
+child: Text(
+"Notification Page",
+style: TextStyle(
+fontSize: 30,
+fontWeight: FontWeight.bold,
+),
+),
+);
+}
+}
+
+// Profile Screen
+class ProfileScreen extends StatelessWidget {
+const ProfileScreen({super.key});
+
+@override
+Widget build(BuildContext context) {
+return const Center(
+child: Text(
+"Profile Page",
+style: TextStyle(
+fontSize: 30,
+fontWeight: FontWeight.bold,
+),
+),
+);
+}
+}
 
 
 

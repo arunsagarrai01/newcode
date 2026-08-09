@@ -8,6 +8,9 @@ class MyApplication extends StatelessWidget {
   const MyApplication({super.key});
 
   // final String name = "Arun";
+  // text wedgit
+
+  
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +52,214 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
+*/
+
+
+import 'package:flutter/material.dart';
+
+void main() {
+runApp(const MyApplication());
+}
+
+class MyApplication extends StatelessWidget {
+const MyApplication({super.key});
+
+@override
+Widget build(BuildContext context) {
+return MaterialApp(
+debugShowCheckedModeBanner: false,
+home: const SettingsPage(),
+);
+}
+}
+
+class SettingsPage extends StatefulWidget {
+const SettingsPage({super.key});
+
+@override
+State<SettingsPage> createState() => _SettingsPageState();
+}
+
+class _SettingsPageState extends State<SettingsPage> {
+
+bool notifications = true;
+bool darkMode = false;
+
+@override
+Widget build(BuildContext context) {
+return Scaffold(
+appBar: AppBar(
+title: const Text("Settings"),
+centerTitle: true,
+),
+
+body: ListView(
+children: [
+
+const Padding(
+padding: EdgeInsets.all(20),
+child: Text(
+"Account",
+style: TextStyle(
+fontSize: 18,
+fontWeight: FontWeight.bold,
+),
+),
+),
+
+ListTile(
+leading: const Icon(Icons.person),
+title: const Text("Edit Profile"),
+subtitle: const Text("Change your profile information"),
+trailing: const Icon(Icons.arrow_forward_ios),
+onTap: () {
+print("Edit Profile clicked");
+},
+),
+
+ListTile(
+leading: const Icon(Icons.lock),
+title: const Text("Change Password"),
+subtitle: const Text("Update your password"),
+trailing: const Icon(Icons.arrow_forward_ios),
+onTap: () {
+print("Change Password clicked");
+},
+),
+
+const Divider(),
+
+const Padding(
+padding: EdgeInsets.all(20),
+child: Text(
+"Preferences",
+style: TextStyle(
+fontSize: 18,
+fontWeight: FontWeight.bold,
+),
+),
+),
+
+// Notification Switch
+SwitchListTile(
+secondary: const Icon(Icons.notifications),
+title: const Text("Notifications"),
+subtitle: const Text("Receive notifications"),
+value: notifications,
+onChanged: (value) {
+setState(() {
+notifications = value;
+});
+},
+),
+
+// Dark Mode Switch
+SwitchListTile(
+secondary: const Icon(Icons.dark_mode),
+title: const Text("Dark Mode"),
+subtitle: const Text("Enable dark mode"),
+value: darkMode,
+onChanged: (value) {
+setState(() {
+darkMode = value;
+});
+},
+),
+
+const Divider(),
+
+const Padding(
+padding: EdgeInsets.all(20),
+child: Text(
+"Other",
+style: TextStyle(
+fontSize: 18,
+fontWeight: FontWeight.bold,
+),
+),
+),
+
+ListTile(
+leading: const Icon(Icons.info),
+title: const Text("About"),
+trailing: const Icon(Icons.arrow_forward_ios),
+onTap: () {
+showDialog(
+context: context,
+builder: (context) {
+return AlertDialog(
+title: const Text("About App"),
+content: const Text(
+"This is a Flutter practice application.",
+),
+actions: [
+TextButton(
+onPressed: () {
+Navigator.pop(context);
+},
+child: const Text("OK"),
+),
+],
+);
+},
+);
+},
+),
+
+ListTile(
+leading: const Icon(
+Icons.logout,
+color: Colors.red,
+),
+title: const Text(
+"Logout",
+style: TextStyle(
+color: Colors.red,
+),
+),
+onTap: () {
+showDialog(
+context: context,
+builder: (context) {
+return AlertDialog(
+title: const Text("Logout"),
+content: const Text(
+"Are you sure you want to logout?",
+),
+actions: [
+
+TextButton(
+onPressed: () {
+Navigator.pop(context);
+},
+child: const Text("Cancel"),
+),
+
+ElevatedButton(
+onPressed: () {
+Navigator.pop(context);
+
+ScaffoldMessenger.of(context).showSnackBar(
+const SnackBar(
+content: Text("Logged out successfully"),
+),
+);
+},
+child: const Text("Logout"),
+),
+],
+);
+},
+);
+},
+),
+],
+),
+);
+}
+}
+
 
 
 
@@ -486,7 +697,13 @@ Settings
 *
 * */
 
-*/
+
+
+
+
+
+
+
 
 /*
 
@@ -994,7 +1211,7 @@ fontWeight: FontWeight.bold,
 }
 */
 
-
+/*
 
 import 'package:flutter/material.dart';
 
@@ -1121,6 +1338,6 @@ style: TextStyle(fontSize: 18),
 ),
 );
 }
-}
+}*/
 
 

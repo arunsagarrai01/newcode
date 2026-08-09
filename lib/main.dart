@@ -264,6 +264,8 @@ child: const Text("Logout"),
 */
 
 
+/*
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -421,6 +423,223 @@ fontWeight: FontWeight.bold,
 );
 }
 }
+
+*/
+
+
+import 'package:flutter/material.dart';
+
+void main() {
+runApp(const MyApplication());
+}
+
+class MyApplication extends StatelessWidget {
+const MyApplication({super.key});
+
+@override
+Widget build(BuildContext context) {
+return MaterialApp(
+debugShowCheckedModeBanner: false,
+home: const ProductPage(),
+);
+}
+}
+
+class ProductPage extends StatelessWidget {
+const ProductPage({super.key});
+
+final List<Map<String, dynamic>> products = const [
+{
+"name": "Laptop",
+"price": 80000,
+"icon": Icons.laptop,
+},
+{
+"name": "Mobile Phone",
+"price": 30000,
+"icon": Icons.phone_android,
+},
+{
+"name": "Headphones",
+"price": 5000,
+"icon": Icons.headphones,
+},
+{
+"name": "Smart Watch",
+"price": 10000,
+"icon": Icons.watch,
+},
+{
+"name": "Keyboard",
+"price": 3000,
+"icon": Icons.keyboard,
+},
+];
+
+@override
+Widget build(BuildContext context) {
+return Scaffold(
+appBar: AppBar(
+title: const Text("Products"),
+centerTitle: true,
+),
+
+body: ListView.builder(
+padding: const EdgeInsets.all(15),
+
+itemCount: products.length,
+
+itemBuilder: (context, index) {
+final product = products[index];
+
+return Card(
+margin: const EdgeInsets.only(bottom: 15),
+
+child: ListTile(
+leading: Icon(
+product["icon"],
+size: 40,
+),
+
+title: Text(
+product["name"],
+style: const TextStyle(
+fontWeight: FontWeight.bold,
+fontSize: 18,
+),
+),
+
+subtitle: Text(
+"Rs. ${product["price"]}",
+),
+
+trailing: const Icon(
+Icons.arrow_forward_ios,
+size: 18,
+),
+
+onTap: () {
+Navigator.push(
+context,
+MaterialPageRoute(
+builder: (context) => ProductDetailsPage(
+name: product["name"],
+price: product["price"],
+),
+),
+);
+},
+),
+);
+},
+),
+);
+}
+}
+
+class ProductDetailsPage extends StatelessWidget {
+final String name;
+final int price;
+
+const ProductDetailsPage({
+super.key,
+required this.name,
+required this.price,
+});
+
+@override
+Widget build(BuildContext context) {
+return Scaffold(
+appBar: AppBar(
+title: const Text("Product Details"),
+),
+
+body: Padding(
+padding: const EdgeInsets.all(20),
+
+child: Column(
+crossAxisAlignment: CrossAxisAlignment.start,
+
+children: [
+
+const SizedBox(height: 30),
+
+Center(
+child: Icon(
+Icons.shopping_bag,
+size: 120,
+),
+),
+
+const SizedBox(height: 30),
+
+Text(
+name,
+style: const TextStyle(
+fontSize: 30,
+fontWeight: FontWeight.bold,
+),
+),
+
+const SizedBox(height: 10),
+
+Text(
+"Rs. $price",
+style: const TextStyle(
+fontSize: 25,
+fontWeight: FontWeight.bold,
+),
+),
+
+const SizedBox(height: 20),
+
+const Text(
+"Product Description",
+style: TextStyle(
+fontSize: 20,
+fontWeight: FontWeight.bold,
+),
+),
+
+const SizedBox(height: 10),
+
+const Text(
+"This is a high-quality product. "
+"You can add more product information here.",
+style: TextStyle(
+fontSize: 16,
+),
+),
+
+const Spacer(),
+
+SizedBox(
+width: double.infinity,
+height: 50,
+
+child: ElevatedButton(
+onPressed: () {
+ScaffoldMessenger.of(context).showSnackBar(
+const SnackBar(
+content: Text("Product added to cart"),
+),
+);
+},
+
+child: const Text(
+"Add to Cart",
+style: TextStyle(fontSize: 18),
+),
+),
+),
+],
+),
+),
+);
+}
+}
+
+
 
 
 

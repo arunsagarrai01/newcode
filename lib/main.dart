@@ -1,3 +1,303 @@
+import 'package:flutter/material.dart';
+
+void main() {
+runApp(const MyApplication());
+}
+
+class MyApplication extends StatelessWidget {
+const MyApplication({super.key});
+
+@override
+Widget build(BuildContext context) {
+return MaterialApp(
+debugShowCheckedModeBanner: false,
+home: const CartPage(),
+);
+}
+}
+
+class CartPage extends StatefulWidget {
+const CartPage({super.key});
+
+@override
+State<CartPage> createState() => _CartPageState();
+}
+
+class _CartPageState extends State<CartPage> {
+
+List<Map<String, dynamic>> cartItems = [
+{
+"name": "Laptop",
+"price": 80000,
+"quantity": 1,
+"icon": Icons.laptop,
+},
+{
+"name": "Mobile Phone",
+"price": 30000,
+"quantity": 2,
+"icon": Icons.phone_android,
+},
+{
+"name": "Headphones",
+"price": 5000,
+"quantity": 1,
+"icon": Icons.headphones,
+},
+];
+
+// Calculate total price
+double getTotalPrice() {
+double total = 0;
+
+for (var item in cartItems) {
+total += item["price"] * item["quantity"];
+}
+
+return total;
+}
+
+// Increase quantity
+void increaseQuantity(int index) {
+setState(() {
+cartItems[index]["quantity"]++;
+});
+}
+
+// Decrease quantity
+void decreaseQuantity(int index) {
+setState(() {
+if (cartItems[index]["quantity"] > 1) {
+cartItems[index]["quantity"]--;
+}
+});
+}
+
+// Remove item
+void removeItem(int index) {
+setState(() {
+cartItems.removeAt(index);
+});
+}
+
+@override
+Widget build(BuildContext context) {
+return Scaffold(
+appBar: AppBar(
+title: const Text("Shopping Cart"),
+centerTitle: true,
+),
+
+body: cartItems.isEmpty
+? const Center(
+child: Text(
+"Your cart is empty",
+style: TextStyle(
+fontSize: 22,
+fontWeight: FontWeight.bold,
+),
+),
+)
+    : Column(
+children: [
+
+// Product List
+Expanded(
+child: ListView.builder(
+padding: const EdgeInsets.all(15),
+itemCount: cartItems.length,
+
+itemBuilder: (context, index) {
+final item = cartItems[index];
+
+return Card(
+margin: const EdgeInsets.only(bottom: 15),
+
+child: Padding(
+padding: const EdgeInsets.all(10),
+
+child: Row(
+children: [
+
+// Product Icon
+Icon(
+item["icon"],
+size: 50,
+),
+
+const SizedBox(width: 15),
+
+// Product Information
+Expanded(
+child: Column(
+crossAxisAlignment:
+CrossAxisAlignment.start,
+
+children: [
+
+Text(
+item["name"],
+style: const TextStyle(
+fontSize: 18,
+fontWeight: FontWeight.bold,
+),
+),
+
+const SizedBox(height: 5),
+
+Text(
+"Rs. ${item["price"]}",
+),
+
+const SizedBox(height: 10),
+
+// Quantity buttons
+Row(
+children: [
+
+IconButton(
+onPressed: () {
+decreaseQuantity(index);
+},
+icon: const Icon(
+Icons.remove,
+),
+),
+
+Text(
+"${item["quantity"]}",
+style: const TextStyle(
+fontSize: 18,
+fontWeight: FontWeight.bold,
+),
+),
+
+IconButton(
+onPressed: () {
+increaseQuantity(index);
+},
+icon: const Icon(
+Icons.add,
+),
+),
+],
+),
+],
+),
+),
+
+// Delete button
+IconButton(
+onPressed: () {
+removeItem(index);
+},
+icon: const Icon(
+Icons.delete,
+color: Colors.red,
+),
+),
+],
+),
+),
+);
+},
+),
+),
+
+// Total Section
+Container(
+padding: const EdgeInsets.all(20),
+
+decoration: BoxDecoration(
+border: Border(
+top: BorderSide(
+color: Colors.grey.shade300,
+),
+),
+),
+
+child: Column(
+children: [
+
+Row(
+mainAxisAlignment:
+MainAxisAlignment.spaceBetween,
+
+children: [
+
+const Text(
+"Total:",
+style: TextStyle(
+fontSize: 22,
+fontWeight: FontWeight.bold,
+),
+),
+
+Text(
+"Rs. ${getTotalPrice().toStringAsFixed(2)}",
+style: const TextStyle(
+fontSize: 22,
+fontWeight: FontWeight.bold,
+),
+),
+],
+),
+
+const SizedBox(height: 15),
+
+SizedBox(
+width: double.infinity,
+height: 50,
+
+child: ElevatedButton(
+onPressed: cartItems.isEmpty
+? null
+    : () {
+ScaffoldMessenger.of(context)
+    .showSnackBar(
+const SnackBar(
+content: Text(
+"Proceeding to checkout",
+),
+),
+);
+},
+
+child: const Text(
+"Checkout",
+style: TextStyle(
+fontSize: 18,
+),
+),
+),
+),
+],
+),
+),
+],
+),
+);
+}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*import 'package:flutter/material.dart';
 
 void main() {
@@ -426,6 +726,7 @@ fontWeight: FontWeight.bold,
 
 */
 
+/*
 
 import 'package:flutter/material.dart';
 
@@ -641,7 +942,7 @@ style: TextStyle(fontSize: 18),
 
 
 
-
+*/
 
 // Stateless widget
 /* Its static widget - whose state does not change */
